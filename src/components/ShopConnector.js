@@ -1,7 +1,7 @@
 import React from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {loadData} from "../data/actionCreators";
+import {loadData, addToCart, clearCart,removeFromCart, updateCartQuantity} from "../data/actionCreators";
 import {DATA_TYPES} from "../data/types";
 import {Shop} from "./Shop";
 
@@ -15,7 +15,11 @@ const mapStateToProps = (dataStore) => {
 };
 
 const mapDispatchToProps = {
-    loadData
+    loadData,
+    addToCart,
+    updateCartQuantity,
+    removeFromCart,
+    clearCart
 };
 
 const filterProducts = (products = [], category) => (
@@ -35,6 +39,7 @@ class ShopConnector extends React.Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <Switch>
                 <Route
@@ -43,7 +48,7 @@ class ShopConnector extends React.Component {
                         <Shop
                             {...this.props}
                             {...routeProps}
-                            products={filterProducts(this.props.products, routeProps.match.params.category)}
+                            products={filterProducts(this.props.shopReducer.products, routeProps.match.params.category)}
                         />
                     }
                 />
