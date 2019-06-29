@@ -1,5 +1,5 @@
-import {createStore} from 'redux';
-import {shopReducer} from "./shopReducer";
+import {createStore, combineReducers} from 'redux';
+import {shopReducer, cartReducer} from "./reducers";
 
 //redux store
-export const dataStore = createStore(shopReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+export const dataStore = createStore(combineReducers({shopReducer, cartReducer}), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
