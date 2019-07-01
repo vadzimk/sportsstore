@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {loadData, addToCart, clearCart,removeFromCart, updateCartQuantity} from "../data/actionCreators";
 import {DATA_TYPES} from "../data/types";
 import {Shop} from "./Shop";
+import {CartDetails} from "./CartDetails";
 
 //calling this store is incorrect it is traditionally called state
 const mapStateToProps = (dataStore) => {
@@ -50,6 +51,12 @@ class ShopConnector extends React.Component {
                             {...routeProps}
                             products={filterProducts(this.props.shopReducer.products, routeProps.match.params.category)}
                         />
+                    }
+                />
+                <Route
+                    path="/shop/cart"
+                    render={(routeProps)=>
+                        <CartDetails {...this.props}{...routeProps}/>
                     }
                 />
                 <Redirect to="/shop/products"/>
