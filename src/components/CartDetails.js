@@ -7,11 +7,12 @@ export class CartDetails extends React.Component {
     ${this.props.cartItems === 0 ? "disabled" : ""}`;
 
     render() {
+        // console.log(this.props.cart)
         return <div className="m-3">
             <h2 className="text-center">
                 Yor cart
             </h2>
-            <table className="tabel table-bordered table-striped">
+            <table className="table table-bordered table-striped">
                 <thead>
                 <tr>
                     <th>
@@ -20,15 +21,19 @@ export class CartDetails extends React.Component {
                     <th>
                         Product
                     </th>
-                    <th>
+                    <th className="text-right">
                         Price
                     </th>
+                    <th className="text-right">
+                        Subtotal
+                    </th>
+                    <th/>
                 </tr>
                 </thead>
                 <tbody>
                 <CartDetailsRows
-                    cart={this.props.cart}
-                    cartPrice={this.props.cartPrice}
+                    cart={this.props.cartReducer.cart}
+                    cartPrice={this.props.cartReducer.cartPrice}
                     updateQuantity={this.props.updateCartQuantity}
                     removeFromCart={this.props.removeFromCart}
                 />
