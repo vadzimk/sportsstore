@@ -1,3 +1,5 @@
+//http://localhost:3501/api/products/
+
 const express = require ('express');
 const jsonServer = require('json-server');
 const chokidar = require('chokidar');
