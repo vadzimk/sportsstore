@@ -1,12 +1,12 @@
 import {ACTION_TYPES} from "./types";
-import {data as phData} from "./placeholderData";
+//import {data as phData} from "./placeholderData";
+import {restDataSource} from "./restDataSource";
+
+const dataSource = new restDataSource();
 
 export const loadData=(dataType)=>(
     {type: ACTION_TYPES.DATA_LOAD,
-        payload: {
-            dataType: dataType,
-            data: phData[dataType],
-        }
+        payload: dataSource.getData(dataType).then(response=>({dataType, data: response.data}))
     }
 );
 

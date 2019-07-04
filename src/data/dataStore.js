@@ -1,5 +1,9 @@
-import {createStore, combineReducers} from 'redux';
+import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import {shopReducer, cartReducer} from "./reducers";
-
+import {asyncActions} from "./asyncMiddleware";
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 //redux store
-export const dataStore = createStore(combineReducers({shopReducer, cartReducer}), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+export const dataStore = createStore(combineReducers(
+    {shopReducer, cartReducer}),
+    composeEnhancers(applyMiddleware(asyncActions))
+    );
